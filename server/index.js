@@ -32,3 +32,17 @@ app.get('/hello', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
+const path = require('path');
+
+// Phục vụ các file tĩnh cho trang Admin
+app.use('/admin', express.static(path.resolve(__dirname, '../client-admin/build')));
+app.get('/admin/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client-admin/build', 'index.html'));
+});
+
+// Phục vụ các file tĩnh cho trang Customer (Route '*' phải để ở cuối cùng)
+app.use('/', express.static(path.resolve(__dirname, '../client-customer/build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client-customer/build', 'index.html'));
+});
