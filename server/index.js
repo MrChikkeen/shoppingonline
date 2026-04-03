@@ -24,3 +24,16 @@ app.get('/hello', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
+const path = require("path");
+
+// serve customer
+app.use(express.static(path.join(__dirname, "../client-customer")));
+
+// route admin
+app.use("/admin", express.static(path.join(__dirname, "../client-admin")));
+
+// trang chủ
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client-customer/index.html"));
+});
