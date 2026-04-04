@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npm run build:admin && npm run build:customer && npm run build:server",
-    "build:admin": "cd client-admin && npm install --no-audit --no-fund && npm run build && rm -rf node_modules",
-    "build:customer": "cd client-customer && npm install --no-audit --no-fund && npm run build && rm -rf node_modules",
-    "build:server": "cd server && npm install --no-audit --no-fund",
+    "build": "cd server && npm install --no-audit --no-fund",
     "start": "cd server && node index.js"
   }
 }
