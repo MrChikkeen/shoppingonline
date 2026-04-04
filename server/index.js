@@ -36,14 +36,14 @@ app.get('/hello', (req, res) => {
 // Admin (ưu tiên trước)
 app.use('/admin', express.static(path.join(__dirname, '../client-admin/build')));
 
-app.get('/admin/*', (req, res) => {
+app.get(/^\/admin(\/.*)?$/, (req, res) => {
   res.sendFile(path.join(__dirname, '../client-admin/build/index.html'));
 });
 
 // Customer (default)
 app.use(express.static(path.join(__dirname, '../client-customer/build')));
 
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, '../client-customer/build/index.html'));
 });
 
